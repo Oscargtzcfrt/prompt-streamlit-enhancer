@@ -106,13 +106,71 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
       - Resultados esperados
       - Restricciones identificadas
 
-   B. ARQUITECTURA Y DISEÑO
+   B. ESTRUCTURA DE VALIDACIÓN OBLIGATORIA
+      Cada paso DEBE seguir esta jerarquía:
+
+      1. PASO PRINCIPAL
+         1.1. OBJETIVO ESPECÍFICO
+              □ ¿Qué se busca lograr exactamente?
+              □ ¿Cuál es el resultado esperado?
+              □ ¿Cómo se medirá el éxito?
+
+         1.2. PREREQUISITOS
+              □ Dependencias necesarias
+              □ Estado inicial requerido
+              □ Recursos necesarios
+
+         1.3. SUB-PASOS
+              1.3.1. Sub-paso 1
+                    - Input específico
+                    - Proceso detallado
+                    - Output esperado
+                    - Validación requerida
+
+              1.3.2. Sub-paso 2
+                    [Mismo formato...]
+
+         1.4. VALIDACIÓN DE COMPLETITUD
+              □ Checklist de resultados esperados
+              □ Pruebas específicas
+              □ Criterios de aceptación
+
+   C. FRAMEWORK DE DEPENDENCIAS
+      Cada acción DEBE especificar:
+
+      1. ESTADO INICIAL
+         □ Variables requeridas: [lista]
+         □ Configuraciones necesarias: [lista]
+         □ Precondiciones: [lista]
+
+      2. TRANSFORMACIÓN
+         2.1. Entrada
+             - Formato específico
+             - Validaciones requeridas
+             - Restricciones
+
+         2.2. Proceso
+             - Pasos atómicos
+             - Puntos de verificación
+             - Manejo de errores
+
+         2.3. Salida
+             - Formato esperado
+             - Validaciones post-proceso
+             - Estado final garantizado
+
+      3. VERIFICACIÓN
+         □ Tests unitarios específicos
+         □ Casos edge a probar
+         □ Criterios de éxito medibles
+
+   D. ARQUITECTURA Y DISEÑO
       - Patrones de diseño a utilizar
       - Estructura de archivos propuesta
       - Componentes principales
       - Interacciones entre componentes
 
-   C. MÓDULOS DEL SISTEMA
+   E. MÓDULOS DEL SISTEMA
       Para cada módulo identificado:
       1. Propósito y responsabilidades
       2. Dependencias y relaciones
@@ -120,7 +178,7 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
       4. Estructuras de datos clave
       5. Consideraciones de rendimiento
 
-   D. PLAN DE IMPLEMENTACIÓN
+   F. PLAN DE IMPLEMENTACIÓN
       Para cada componente:
       1. Preparación
          - Configuración del entorno
@@ -153,7 +211,7 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
          - Criterios de aceptación
          - Métricas de calidad
 
-   E. CONSIDERACIONES TÉCNICAS
+   G. CONSIDERACIONES TÉCNICAS
       1. Seguridad
          - Autenticación
          - Autorización
@@ -169,7 +227,7 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
          - Documentación requerida
          - Prácticas de logging
 
-   F. PLAN DE PRUEBAS
+   H. PLAN DE PRUEBAS
       1. Unitarias
          - Componentes a probar
          - Casos de prueba
@@ -185,7 +243,7 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
          - Pruebas de carga
          - Validación de requerimientos
 
-   G. SISTEMA DE LOGGING
+   I. SISTEMA DE LOGGING
       1. Estructura del Log
          - Timestamp
          - Nivel de log (INFO, WARNING, ERROR, DEBUG)
@@ -226,7 +284,7 @@ ANTES de realizar CUALQUIER acción o generar CUALQUIER código, DEBES:
          - Alertas y notificaciones
          - Dashboard de monitoreo
 
-   H. PROPUESTAS DE IMPLEMENTACIÓN
+   J. PROPUESTAS DE IMPLEMENTACIÓN
       Para cada aspecto clave del sistema, se presentarán múltiples propuestas:
 
       1. Formato de Propuesta
@@ -306,38 +364,46 @@ Input del usuario: {user_input}
 </formato_codigo>
 
 <sistema_logging>
-{
-  "log_entry": {
-    "timestamp": "YYYY-MM-DD HH:mm:ss.SSS",
-    "level": "INFO|WARNING|ERROR|DEBUG",
-    "module": "nombre_modulo",
-    "function": "nombre_funcion",
-    "message": "descripcion_detallada",
-    "stack_trace": "si_aplica",
-    "context": {
-      "user_input": "datos_relevantes",
-      "system_state": "estado_actual",
-      "performance_metrics": "metricas_relevantes"
-    }
-  }
-}
+ESTRUCTURA DE LOG:
+1. METADATA
+   - Timestamp: YYYY-MM-DD HH:mm:ss.SSS
+   - Level: INFO|WARNING|ERROR|DEBUG
+   - Module: nombre_modulo
+   - Function: nombre_funcion
+
+2. CONTENIDO
+   - Message: descripcion_detallada
+   - Stack Trace: si_aplica
+
+3. CONTEXTO
+   - User Input: datos_relevantes
+   - System State: estado_actual
+   - Performance Metrics: metricas_relevantes
 </sistema_logging>
 
 <formato_propuestas>
-{
-  "propuesta": {
-    "id": "identificador_unico",
-    "titulo": "nombre_descriptivo",
-    "descripcion": "detalle_completo",
-    "ventajas": ["lista_ventajas"],
-    "desventajas": ["lista_desventajas"],
-    "recursos": ["recursos_necesarios"],
-    "tiempo": "estimacion_tiempo",
-    "riesgos": ["riesgos_potenciales"],
-    "estado": "pendiente|aprobada|rechazada",
-    "razones_decision": "explicacion_decision"
-  }
-}
+ESTRUCTURA DE PROPUESTA:
+1. IDENTIFICACIÓN
+   - ID: identificador_unico
+   - Título: nombre_descriptivo
+   - Descripción: detalle_completo
+
+2. ANÁLISIS
+   - Ventajas:
+     □ [Lista de ventajas]
+   - Desventajas:
+     □ [Lista de desventajas]
+
+3. RECURSOS Y TIEMPO
+   - Recursos necesarios:
+     □ [Lista de recursos]
+   - Tiempo estimado: [estimacion]
+   - Riesgos potenciales:
+     □ [Lista de riesgos]
+
+4. ESTADO
+   - Estado actual: [pendiente|aprobada|rechazada]
+   - Razones de decisión: [explicacion]
 </formato_propuestas>
 
 """
@@ -562,14 +628,38 @@ def generate_prompt(user_input):
             return None
         
         # Generate XML structure only if plan is valid
-        xml_structure = generate_xml_structure(plan_content)
+        try:
+            xml_structure = generate_xml_structure(plan_content)
+        except Exception as e:
+            st.error(f"❌ Failed to generate XML structure: {str(e)}")
+            return None
         
         # Combine everything into the final prompt
-        final_prompt = development_prompt.format(
-            user_input=user_input
-        ) + "\n\nPLAN DETALLADO:\n" + str(plan_content) + "\n\nESTRUCTURA XML:\n" + xml_structure
-        
-        return final_prompt
+        try:
+            # Construir el prompt por partes para mejor control de errores
+            prompt_parts = []
+            
+            # Parte 1: Development prompt base
+            prompt_parts.append(development_prompt.format(user_input=user_input))
+            
+            # Parte 2: Plan detallado
+            prompt_parts.append("\n\nPLAN DETALLADO:")
+            prompt_parts.append(str(plan_content).strip())
+            
+            # Parte 3: Estructura XML
+            prompt_parts.append("\n\nESTRUCTURA XML:")
+            prompt_parts.append(str(xml_structure).strip())
+            
+            # Unir todas las partes
+            final_prompt = "\n".join(prompt_parts)
+            
+            return final_prompt
+        except Exception as e:
+            st.error(f"❌ Error en el formato del prompt: {str(e)}")
+            # Log the error details for debugging
+            st.error(f"Debug info:\nUser input: {user_input}\nPlan content length: {len(str(plan_content))}\nXML structure length: {len(xml_structure)}")
+            return None
+            
     except Exception as e:
         st.error(f"Error al generar el prompt: {str(e)}")
         return None
